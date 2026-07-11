@@ -1,0 +1,609 @@
+<!DOCTYPE html>=
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GanG GanG — Hack The Box team. Roster, writeups and links.">
+  <title>GanG GanG</title>
+  <!-- <link rel="icon" href="favicon.png" type="image/png" sizes="32x32"> -->
+
+  <style>
+    /* ══════════════════════════════════════════════
+       ENDESGA 32 — full palette
+       ══════════════════════════════════════════════ */
+    :root {
+      --e32-rust:        #be4a2f;
+      --e32-clay:        #d77643;
+      --e32-sand:        #ead4aa;
+      --e32-tan:         #e4a672;
+      --e32-brown:       #b86f50;
+      --e32-umber:       #733e39;
+      --e32-maroon:      #3e2731;
+      --e32-blood:       #a22633;
+      --e32-red:         #e43b44;
+      --e32-orange:      #f77622;
+      --e32-amber:       #feae34;
+      --e32-yellow:      #fee761;
+      --e32-green:       #63c74d;
+      --e32-forest:      #3e8948;
+      --e32-pine:        #265c42;
+      --e32-abyss:       #193c3e;
+      --e32-navy:        #124e89;
+      --e32-blue:        #0099db;
+      --e32-cyan:        #2ce8f5;
+      --e32-white:       #ffffff;
+      --e32-mist:        #c0cbdc;
+      --e32-steel:       #8b9bb4;
+      --e32-slate:       #5a6988;
+      --e32-storm:       #3a4466;
+      --e32-void:        #262b44;
+      --e32-ink:         #181425;
+      --e32-hotred:      #ff0044;
+      --e32-plum:        #68386c;
+      --e32-mauve:       #b55088;
+      --e32-salmon:      #f6757a;
+      --e32-peach:       #e8b796;
+      --e32-caramel:     #c28569;
+
+      /* semantic aliases — retheme the whole site here */
+      --bg:        var(--e32-ink);
+      --panel:     var(--e32-void);
+      --line:      var(--e32-storm);
+      --text:      var(--e32-white);
+      --text-dim:  var(--e32-mist);
+      --text-mute: var(--e32-steel);
+      --link:      var(--e32-cyan);
+      --prompt:    var(--e32-green);
+
+      --font-mono: ui-monospace, "Cascadia Mono", "JetBrains Mono", Menlo, Consolas, "Liberation Mono", monospace;
+      --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          rgba(255, 255, 255, 0.015) 0 1px,
+          transparent 1px 3px
+        ),
+        var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.55;
+    }
+
+    ::selection {
+      background: var(--e32-hotred);
+      color: var(--e32-white);
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px dashed var(--e32-yellow);
+      outline-offset: 3px;
+    }
+
+    /* palette swatch strip across the top */
+    .palette-strip {
+      height: 5px;
+      background: linear-gradient(90deg,
+        var(--e32-hotred)  0 12.5%,
+        var(--e32-orange)  12.5% 25%,
+        var(--e32-yellow)  25% 37.5%,
+        var(--e32-green)   37.5% 50%,
+        var(--e32-cyan)    50% 62.5%,
+        var(--e32-blue)    62.5% 75%,
+        var(--e32-plum)    75% 87.5%,
+        var(--e32-mauve)   87.5% 100%
+      );
+    }
+
+    /* ══════════════════════════════════════════════
+       HERO
+       ══════════════════════════════════════════════ */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 3.5rem 1.25rem 2.5rem;
+    }
+
+    /* pixel invader placeholder logo — swap for your own <img> */
+    .logo-sprite {
+      width: 88px;
+      height: auto;
+      animation: hop 2s steps(1, end) infinite;
+    }
+
+    @keyframes hop {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-6px); }
+    }
+
+    .title {
+      margin: 1.75rem 0 0;
+      font-family: var(--font-mono);
+      font-size: clamp(2rem, 6vw, 3.25rem);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-shadow: 4px 4px 0 var(--e32-plum);
+    }
+
+    .tagline {
+      margin: 0.75rem 0 0;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      overflow-wrap: anywhere;
+    }
+
+    .tagline .prompt { color: var(--prompt); }
+
+    .cursor {
+      display: inline-block;
+      width: 0.55em;
+      height: 1em;
+      margin-left: 2px;
+      vertical-align: text-bottom;
+      background: var(--prompt);
+      animation: blink 1.1s steps(1, end) infinite;
+    }
+
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 1.75rem;
+    }
+
+    .hero-links a {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--link);
+      text-decoration: none;
+      padding: 0.5rem 0.9rem;
+      background: var(--panel);
+      border: 2px solid var(--line);
+      transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+    }
+
+    .hero-links a:hover {
+      border-color: var(--link);
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0 var(--e32-navy);
+    }
+
+    .hero-links a:active {
+      transform: translate(0, 0);
+      box-shadow: none;
+    }
+
+    /* ══════════════════════════════════════════════
+       STATS STRIP — optional, delete the whole
+       <section class="stats"> if you don't want it
+       ══════════════════════════════════════════════ */
+    .stats {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.5rem 1rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.9rem;
+    }
+
+    .stat {
+      background: var(--panel);
+      border: 2px solid var(--line);
+      box-shadow: 4px 4px 0 rgba(24, 20, 37, 0.7);
+      padding: 0.9rem 1rem;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-family: var(--font-mono);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--e32-yellow);
+    }
+
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-mute);
+      margin-top: 0.2rem;
+    }
+
+    /* ══════════════════════════════════════════════
+       ROSTER
+       ══════════════════════════════════════════════ */
+    .roster {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 3.5rem;
+    }
+
+    .roster-head {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      font-family: var(--font-mono);
+    }
+
+    .roster-head h2 {
+      margin: 0;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--prompt);
+      letter-spacing: 0.02em;
+    }
+
+    .roster-head .rule {
+      flex: 1;
+      border-top: 2px dashed var(--line);
+      transform: translateY(-0.2em);
+    }
+
+    .roster-head .count {
+      font-size: 0.8rem;
+      color: var(--text-mute);
+      white-space: nowrap;
+    }
+
+    /* the grid */
+    .member-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 1.4rem;
+    }
+
+    /* the card + hover pop */
+    .member-card {
+      --accent: var(--e32-green); /* overridden by nth-child cycle below */
+      display: flex;
+      flex-direction: column;
+      background: var(--panel);
+      border: 2px solid var(--line);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+
+    .member-card:hover,
+    .member-card:focus-within {
+      transform: translate(-5px, -5px);
+      border-color: var(--accent);
+      box-shadow: 7px 7px 0 var(--accent);
+    }
+
+    /* accent cycle — cards color themselves automatically */
+    .member-card:nth-child(6n+1) { --accent: var(--e32-green); }
+    .member-card:nth-child(6n+2) { --accent: var(--e32-cyan); }
+    .member-card:nth-child(6n+3) { --accent: var(--e32-yellow); }
+    .member-card:nth-child(6n+4) { --accent: var(--e32-orange); }
+    .member-card:nth-child(6n+5) { --accent: var(--e32-salmon); }
+    .member-card:nth-child(6n+6) { --accent: var(--e32-mauve); }
+
+    .member-avatar {
+      position: relative;
+      overflow: hidden;
+      border-bottom: 2px solid var(--line);
+      background: var(--e32-storm);
+    }
+
+    .member-avatar img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      image-rendering: pixelated; /* leans into the palette; remove for smooth photos */
+      transition: transform 0.15s ease;
+    }
+
+    .member-card:hover .member-avatar img,
+    .member-card:focus-within .member-avatar img {
+      transform: scale(1.06);
+    }
+
+    /* status pixel on the avatar corner */
+    .member-avatar::after {
+      content: "";
+      position: absolute;
+      right: 8px;
+      bottom: 8px;
+      width: 12px;
+      height: 12px;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+    }
+
+    .member-body {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      padding: 1rem 1.1rem 1.1rem;
+      gap: 0.5rem;
+    }
+
+    .member-name {
+      margin: 0;
+      font-family: var(--font-mono);
+      font-size: 1.05rem;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+      transition: color 0.15s ease;
+    }
+
+    .member-card:hover .member-name,
+    .member-card:focus-within .member-name {
+      color: var(--accent);
+    }
+
+    .member-role {
+      align-self: flex-start;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .member-bio {
+      margin: 0;
+      font-size: 0.87rem;
+      color: var(--text-dim);
+      flex: 1;
+    }
+
+    .member-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem 0.9rem;
+      margin-top: 0.25rem;
+    }
+
+    .member-links a {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--link);
+      text-decoration: none;
+    }
+
+    .member-links a::before {
+      content: "> ";
+      color: var(--text-mute);
+    }
+
+    .member-links a:hover { text-decoration: underline; }
+
+    /* ══════════════════════════════════════════════
+       FOOTER
+       ══════════════════════════════════════════════ */
+    footer {
+      border-top: 2px solid var(--line);
+      padding: 1.5rem 1.25rem 2rem;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-mute);
+    }
+
+    footer .echo { color: var(--prompt); }
+
+    footer .out {
+      margin-top: 0.35rem;
+      color: var(--text-dim);
+    }
+
+    /* ══════════════════════════════════════════════
+       RESPONSIVE + MOTION
+       ══════════════════════════════════════════════ */
+    @media (max-width: 640px) {
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .member-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .logo-sprite, .cursor { animation: none; }
+      .member-card, .member-avatar img, .hero-links a { transition: none; }
+      .member-card:hover, .member-card:focus-within,
+      .member-card:hover .member-avatar img,
+      .member-card:focus-within .member-avatar img,
+      .hero-links a:hover { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="palette-strip" aria-hidden="true"></div>
+
+  <!-- ═══ HERO ═══ -->
+  <header class="hero">
+    <!-- Placeholder logo: a pixel invader drawn from the palette.
+         Replace this <svg> with <img src="images/logo.png" alt="GanG GanG logo" width="120"> -->
+    <svg class="logo-sprite" viewBox="0 0 11 8" role="img"
+         aria-label="Pixel invader placeholder logo" shape-rendering="crispEdges">
+      <g fill="var(--e32-green)">
+        <rect x="2" y="0" width="1" height="1"/><rect x="8" y="0" width="1" height="1"/>
+        <rect x="3" y="1" width="1" height="1"/><rect x="7" y="1" width="1" height="1"/>
+        <rect x="2" y="2" width="7" height="1"/>
+        <rect x="1" y="3" width="2" height="1"/><rect x="4" y="3" width="3" height="1"/><rect x="8" y="3" width="2" height="1"/>
+        <rect x="0" y="4" width="11" height="1"/>
+        <rect x="0" y="5" width="1" height="1"/><rect x="2" y="5" width="7" height="1"/><rect x="10" y="5" width="1" height="1"/>
+        <rect x="0" y="6" width="1" height="1"/><rect x="2" y="6" width="1" height="1"/><rect x="8" y="6" width="1" height="1"/><rect x="10" y="6" width="1" height="1"/>
+        <rect x="3" y="7" width="2" height="1"/><rect x="6" y="7" width="2" height="1"/>
+      </g>
+    </svg>
+
+    <h1 class="title">GanG GanG</h1>
+
+    <p class="tagline">
+      <span class="prompt">$</span> ./roster --team gang-gang<span class="cursor" aria-hidden="true"></span>
+    </p>
+
+    <nav class="hero-links" aria-label="Team links">
+      <a href="https://app.hackthebox.com/teams/00000">HackTheBox</a>
+      <a href="https://ctftime.org/team/000000">CTFtime</a>
+      <a href="https://example.com">Writeups</a>
+      <a href="https://discord.gg/invite">Discord</a>
+    </nav>
+  </header>
+
+  <!-- ═══ STATS (optional — delete this section if unwanted) ═══ -->
+  <section class="stats" aria-label="Team stats">
+    <div class="stat"><div class="stat-value">#128</div><div class="stat-label">Global rank</div></div>
+    <div class="stat"><div class="stat-value">1337</div><div class="stat-label">Points</div></div>
+    <div class="stat"><div class="stat-value">247</div><div class="stat-label">User owns</div></div>
+    <div class="stat"><div class="stat-value">231</div><div class="stat-label">System owns</div></div>
+  </section>
+
+  <!-- ═══ ROSTER ═══ -->
+  <section class="roster">
+    <div class="roster-head">
+      <h2>// roster</h2>
+      <span class="rule" aria-hidden="true"></span>
+      <span class="count"><span id="member-count">6</span> members</span>
+    </div>
+
+    <div class="member-grid">
+
+      <article class="member-card">
+        <div class="member-avatar">
+          <img src="images/member1.png" alt="" loading="lazy"
+               onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%233a4466%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%238b9bb4%22 text-anchor=%22middle%22 dy=%22.35em%22 font-size=%2244%22 font-family=%22monospace%22%3E%3F%3C/text%3E%3C/svg%3E'">
+        </div>
+        <div class="member-body">
+          <h3 class="member-name">Asylum</h3>
+          <span class="member-role">pwn</span>
+          <p class="member-bio">Lorem Ipsum</p>
+          <div class="member-links">
+            <a href="https://app.hackthebox.com/users/000000">HTB</a>
+            <a href="https://github.com/username">GitHub</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <div class="member-avatar">
+          <img src="images/member2.png" alt="" loading="lazy"
+               onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%233a4466%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%238b9bb4%22 text-anchor=%22middle%22 dy=%22.35em%22 font-size=%2244%22 font-family=%22monospace%22%3E%3F%3C/text%3E%3C/svg%3E'">
+        </div>
+        <div class="member-body">
+          <h3 class="member-name">webslinger</h3>
+          <span class="member-role">web</span>
+          <p class="member-bio">Lives in DevTools. Allergic to prepared statements that other people wrote correctly.</p>
+          <div class="member-links">
+            <a href="https://example.com">Blog</a>
+            <a href="https://www.linkedin.com/in/username/">LinkedIn</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <div class="member-avatar">
+          <img src="images/member3.png" alt="" loading="lazy"
+               onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%233a4466%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%238b9bb4%22 text-anchor=%22middle%22 dy=%22.35em%22 font-size=%2244%22 font-family=%22monospace%22%3E%3F%3C/text%3E%3C/svg%3E'">
+        </div>
+        <div class="member-body">
+          <h3 class="member-name">xor_wife</h3>
+          <span class="member-role">crypto</span>
+          <p class="member-bio">If it's not a one-time pad, it's a someday-broken pad.</p>
+          <div class="member-links">
+            <a href="https://github.com/username">GitHub</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <div class="member-avatar">
+          <img src="images/member4.png" alt="" loading="lazy"
+               onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%233a4466%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%238b9bb4%22 text-anchor=%22middle%22 dy=%22.35em%22 font-size=%2244%22 font-family=%22monospace%22%3E%3F%3C/text%3E%3C/svg%3E'">
+        </div>
+        <div class="member-body">
+          <h3 class="member-name">ghidra_gremlin</h3>
+          <span class="member-role">rev</span>
+          <p class="member-bio">Renames sub_401000 for a living. Dreams in x86.</p>
+          <div class="member-links">
+            <a href="https://app.hackthebox.com/users/000000">HTB</a>
+            <a href="https://example.com">Blog</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <div class="member-avatar">
+          <img src="images/member5.png" alt="" loading="lazy"
+               onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%233a4466%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%238b9bb4%22 text-anchor=%22middle%22 dy=%22.35em%22 font-size=%2244%22 font-family=%22monospace%22%3E%3F%3C/text%3E%3C/svg%3E'">
+        </div>
+        <div class="member-body">
+          <h3 class="member-name">packet_witch</h3>
+          <span class="member-role">forensics</span>
+          <p class="member-bio">Opens the pcap before the coffee. Will find your exfil in layer 7.</p>
+          <div class="member-links">
+            <a href="https://www.linkedin.com/in/username/">LinkedIn</a>
+            <a href="https://github.com/username">GitHub</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="member-card">
+        <div class="member-avatar">
+          <img src="images/member6.png" alt="" loading="lazy"
+               onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%233a4466%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%238b9bb4%22 text-anchor=%22middle%22 dy=%22.35em%22 font-size=%2244%22 font-family=%22monospace%22%3E%3F%3C/text%3E%3C/svg%3E'">
+        </div>
+        <div class="member-body">
+          <h3 class="member-name">dork_lord</h3>
+          <span class="member-role">osint</span>
+          <p class="member-bio">Found your 2014 forum posts. Founder &amp; keeper of the team wiki.</p>
+          <div class="member-links">
+            <a href="https://example.com">Writeups</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══ MEMBER CARD — COPY ME ═══
+      <article class="member-card">
+        <div class="member-avatar">
+          <img src="images/FILENAME.png" alt="" loading="lazy"
+               onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%233a4466%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%238b9bb4%22 text-anchor=%22middle%22 dy=%22.35em%22 font-size=%2244%22 font-family=%22monospace%22%3E%3F%3C/text%3E%3C/svg%3E'">
+        </div>
+        <div class="member-body">
+          <h3 class="member-name">HANDLE</h3>
+          <span class="member-role">ROLE</span>
+          <p class="member-bio">BIO — one or two lines.</p>
+          <div class="member-links">
+            <a href="URL">Label</a>
+          </div>
+        </div>
+      </article>
+      -->
+
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div><span class="echo">$</span> echo "hack the planet"</div>
+    <div class="out">© 2026 GanG GanG</div>
+  </footer>
+
+  <script>
+    // keeps the "N members" counter in sync with the grid
+    document.getElementById("member-count").textContent =
+      document.querySelectorAll(".member-card").length;
+  </script>
+</body>
+</html>
