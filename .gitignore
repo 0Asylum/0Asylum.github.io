@@ -1,0 +1,16 @@
+# Local databases, bot configuration, credentials, and logs must not enter site history.
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+.env
+.env.*
+*.key
+*.pem
+id_*
+config.json
+*.log
+__pycache__/
+.venv/
+mockup-*.png
+HANDOFF.md
