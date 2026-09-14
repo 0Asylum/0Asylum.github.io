@@ -1,11 +1,11 @@
-<!DOCTYPE html>=
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="GanG GanG — Hack The Box team. Roster, writeups and links.">
-  <title>GanG GanG</title>
-  <!-- <link rel="icon" href="favicon.png" type="image/png" sizes="32x32"> -->
+  <meta name="description" content="GANG GANG — Hack The Box team. Meet the Hack The Box crew and explore their stats.">
+  <title>GANG GANG</title>
+
 
   <style>
     /* ══════════════════════════════════════════════
@@ -111,59 +111,34 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      padding: 3.5rem 1.25rem 2.5rem;
+      padding: 1.5rem 1.25rem 2.25rem;
     }
 
-    /* pixel invader placeholder logo — swap for your own <img> */
-    .logo-sprite {
-      width: 88px;
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .hero-banner-animated,
+    .hero-banner-static {
+      display: block;
+      width: min(100%, 960px);
       height: auto;
-      animation: hop 2s steps(1, end) infinite;
     }
 
-    @keyframes hop {
-      0%, 100% { transform: translateY(0); }
-      50%      { transform: translateY(-6px); }
-    }
-
-    .title {
-      margin: 1.75rem 0 0;
-      font-family: var(--font-mono);
-      font-size: clamp(2rem, 6vw, 3.25rem);
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      text-shadow: 4px 4px 0 var(--e32-plum);
-    }
-
-    .tagline {
-      margin: 0.75rem 0 0;
-      font-family: var(--font-mono);
-      font-size: 0.95rem;
-      color: var(--text-dim);
-      overflow-wrap: anywhere;
-    }
-
-    .tagline .prompt { color: var(--prompt); }
-
-    .cursor {
-      display: inline-block;
-      width: 0.55em;
-      height: 1em;
-      margin-left: 2px;
-      vertical-align: text-bottom;
-      background: var(--prompt);
-      animation: blink 1.1s steps(1, end) infinite;
-    }
-
-    @keyframes blink { 50% { opacity: 0; } }
+    .hero-banner-static { display: none; }
 
     .hero-links {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      gap: 0.75rem;
-      margin-top: 1.75rem;
+      margin-top: 1.2rem;
     }
 
     .hero-links a {
@@ -189,8 +164,7 @@
     }
 
     /* ══════════════════════════════════════════════
-       STATS STRIP — optional, delete the whole
-       <section class="stats"> if you don't want it
+       STATS STRIP
        ══════════════════════════════════════════════ */
     .stats {
       max-width: 960px;
@@ -286,13 +260,12 @@
       box-shadow: 7px 7px 0 var(--accent);
     }
 
-    /* accent cycle — cards color themselves automatically */
-    .member-card:nth-child(6n+1) { --accent: var(--e32-green); }
-    .member-card:nth-child(6n+2) { --accent: var(--e32-cyan); }
-    .member-card:nth-child(6n+3) { --accent: var(--e32-yellow); }
-    .member-card:nth-child(6n+4) { --accent: var(--e32-orange); }
-    .member-card:nth-child(6n+5) { --accent: var(--e32-salmon); }
-    .member-card:nth-child(6n+6) { --accent: var(--e32-mauve); }
+    /* Rank colors stay the same for members with the same HTB rank. */
+    .member-card.rank-noob { --accent: var(--e32-steel); }
+    .member-card.rank-script-kiddie { --accent: var(--e32-cyan); }
+    .member-card.rank-hacker { --accent: var(--e32-green); }
+    .member-card.rank-pro-hacker { --accent: var(--e32-amber); }
+    .member-card.rank-elite-hacker { --accent: var(--e32-mauve); }
 
     .member-avatar {
       position: relative;
@@ -418,12 +391,74 @@
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .logo-sprite, .cursor { animation: none; }
+      .hero-banner-animated { display: none; }
+      .hero-banner-static { display: block; }
       .member-card, .member-avatar img, .hero-links a { transition: none; }
       .member-card:hover, .member-card:focus-within,
       .member-card:hover .member-avatar img,
       .member-card:focus-within .member-avatar img,
       .hero-links a:hover { transform: none; }
+    }
+
+    .roster { padding-top: 2rem; }
+    .roster-head { margin-bottom: 0.3rem; }
+    .roster-note, .data-note {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-mute);
+    }
+    .roster-note { margin: 0 0 1.5rem; }
+    .roster-note span { color: var(--prompt); }
+    .data-note { margin: 1.4rem 0 0; }
+    .member-avatar { height: 128px; display: grid; place-items: center; }
+    .member-avatar img { height: 128px; aspect-ratio: auto; object-fit: contain; image-rendering: auto; }
+    .avatar-fallback {
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+      font-size: 3rem;
+      font-weight: 700;
+      text-shadow: 3px 3px 0 var(--e32-plum);
+    }
+    .member-body { gap: 0.65rem; }
+    .member-card.captain { border-color: var(--accent); }
+    .captain-mark,
+    .founder-mark {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 0.35rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .captain-mark { color: var(--e32-green); }
+    .founder-mark { color: var(--bg); background: var(--e32-yellow); padding: 0.08rem 0.3rem; }
+    .member-role { letter-spacing: 0.04em; }
+    .member-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.3rem;
+      margin: 0.2rem 0;
+    }
+    .member-metrics div { min-width: 0; border-top: 2px dashed var(--line); padding-top: 0.45rem; }
+    .member-metrics strong {
+      display: block;
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 1.03rem;
+    }
+    .member-metrics span {
+      display: block;
+      color: var(--text-mute);
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      line-height: 1.3;
+    }
+    .member-links { margin-top: auto; padding-top: 0.35rem; border-top: 1px solid var(--line); }
+    .member-links a { font-weight: 700; }
+    .member-links a::before { content: none; }
+    @media (max-width: 640px) {
+      .member-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); }
     }
   </style>
 </head>
@@ -432,178 +467,349 @@
 
   <!-- ═══ HERO ═══ -->
   <header class="hero">
-    <!-- Placeholder logo: a pixel invader drawn from the palette.
-         Replace this <svg> with <img src="images/logo.png" alt="GanG GanG logo" width="120"> -->
-    <svg class="logo-sprite" viewBox="0 0 11 8" role="img"
-         aria-label="Pixel invader placeholder logo" shape-rendering="crispEdges">
-      <g fill="var(--e32-green)">
-        <rect x="2" y="0" width="1" height="1"/><rect x="8" y="0" width="1" height="1"/>
-        <rect x="3" y="1" width="1" height="1"/><rect x="7" y="1" width="1" height="1"/>
-        <rect x="2" y="2" width="7" height="1"/>
-        <rect x="1" y="3" width="2" height="1"/><rect x="4" y="3" width="3" height="1"/><rect x="8" y="3" width="2" height="1"/>
-        <rect x="0" y="4" width="11" height="1"/>
-        <rect x="0" y="5" width="1" height="1"/><rect x="2" y="5" width="7" height="1"/><rect x="10" y="5" width="1" height="1"/>
-        <rect x="0" y="6" width="1" height="1"/><rect x="2" y="6" width="1" height="1"/><rect x="8" y="6" width="1" height="1"/><rect x="10" y="6" width="1" height="1"/>
-        <rect x="3" y="7" width="2" height="1"/><rect x="6" y="7" width="2" height="1"/>
-      </g>
-    </svg>
-
-    <h1 class="title">GanG GanG</h1>
-
-    <p class="tagline">
-      <span class="prompt">$</span> ./roster --team gang-gang<span class="cursor" aria-hidden="true"></span>
-    </p>
-
+    <h1 class="sr-only">GANG GANG</h1>
+    <img class="hero-banner-animated" src="assets/gang-gang-banner.gif"
+         alt="GANG GANG cat-and-terminal banner with a blinking cursor"
+         width="1200" height="480">
+    <img class="hero-banner-static" src="assets/gang-gang-banner.png"
+         alt="GANG GANG cat-and-terminal banner"
+         width="1983" height="793">
     <nav class="hero-links" aria-label="Team links">
-      <a href="https://app.hackthebox.com/teams/00000">HackTheBox</a>
-      <a href="https://ctftime.org/team/000000">CTFtime</a>
-      <a href="https://example.com">Writeups</a>
-      <a href="https://discord.gg/invite">Discord</a>
+      <a href="https://app.hackthebox.com/teams/8709" target="_blank" rel="noopener noreferrer">Hack The Box ↗</a>
     </nav>
   </header>
 
-  <!-- ═══ STATS (optional — delete this section if unwanted) ═══ -->
-  <section class="stats" aria-label="Team stats">
-    <div class="stat"><div class="stat-value">#128</div><div class="stat-label">Global rank</div></div>
-    <div class="stat"><div class="stat-value">1337</div><div class="stat-label">Points</div></div>
-    <div class="stat"><div class="stat-value">247</div><div class="stat-label">User owns</div></div>
-    <div class="stat"><div class="stat-value">231</div><div class="stat-label">System owns</div></div>
+  <!-- BEGIN GENERATED STATS -->
+  <section class="stats" aria-label="Team activity from Hack The Box">
+    <div class="stat"><div class="stat-value">20</div><div class="stat-label">Operatives</div></div>
+    <div class="stat"><div class="stat-value">184</div><div class="stat-label">Root events</div></div>
+    <div class="stat"><div class="stat-value">42</div><div class="stat-label">Puzzle clears</div></div>
+    <div class="stat"><div class="stat-value">3</div><div class="stat-label">Fortress flags</div></div>
   </section>
+  <!-- END GENERATED STATS -->
 
-  <!-- ═══ ROSTER ═══ -->
-  <section class="roster">
+  <main class="roster" id="roster">
     <div class="roster-head">
       <h2>// roster</h2>
       <span class="rule" aria-hidden="true"></span>
-      <span class="count"><span id="member-count">6</span> members</span>
+      <span class="count">20 members</span>
     </div>
-
+    <p class="roster-note">$ cat /team/crew.txt <span aria-hidden="true">█</span></p>
     <div class="member-grid">
-
-      <article class="member-card">
-        <div class="member-avatar">
-          <img src="images/member1.png" alt="" loading="lazy"
-               onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%233a4466%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%238b9bb4%22 text-anchor=%22middle%22 dy=%22.35em%22 font-size=%2244%22 font-family=%22monospace%22%3E%3F%3C/text%3E%3C/svg%3E'">
-        </div>
+      <!-- BEGIN GENERATED MEMBERS -->
+      <article class="member-card captain rank-pro-hacker">
+        <div class="member-avatar"><img src="assets/avatars/66289.png" alt="" loading="lazy"></div>
         <div class="member-body">
-          <h3 class="member-name">Asylum</h3>
-          <span class="member-role">pwn</span>
-          <p class="member-bio">Lorem Ipsum</p>
+          <h3 class="member-name">asylum <span class="captain-mark">★ captain</span></h3>
+          <span class="member-role">Pro Hacker</span>
+          <div class="member-metrics" aria-label="Hack The Box stats">
+            <div><strong>312</strong><span>HTB pts</span></div>
+            <div><strong>67</strong><span>root flags</span></div>
+            <div><strong>21</strong><span>puzzles</span></div>
+          </div>
           <div class="member-links">
-            <a href="https://app.hackthebox.com/users/000000">HTB</a>
-            <a href="https://github.com/username">GitHub</a>
+            <a href="https://app.hackthebox.com/users/66289" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
           </div>
         </div>
       </article>
-
-      <article class="member-card">
-        <div class="member-avatar">
-          <img src="images/member2.png" alt="" loading="lazy"
-               onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%233a4466%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%238b9bb4%22 text-anchor=%22middle%22 dy=%22.35em%22 font-size=%2244%22 font-family=%22monospace%22%3E%3F%3C/text%3E%3C/svg%3E'">
-        </div>
+      <article class="member-card founder rank-elite-hacker">
+        <div class="member-avatar"><img src="assets/avatars/1775303.png" alt="" loading="lazy"></div>
         <div class="member-body">
-          <h3 class="member-name">webslinger</h3>
-          <span class="member-role">web</span>
-          <p class="member-bio">Lives in DevTools. Allergic to prepared statements that other people wrote correctly.</p>
+          <h3 class="member-name">opr3vail <span class="founder-mark">★ Founder</span></h3>
+          <span class="member-role">Elite Hacker</span>
+          <div class="member-metrics" aria-label="Hack The Box stats">
+            <div><strong>271</strong><span>HTB pts</span></div>
+            <div><strong>100</strong><span>root flags</span></div>
+            <div><strong>38</strong><span>puzzles</span></div>
+          </div>
           <div class="member-links">
-            <a href="https://example.com">Blog</a>
-            <a href="https://www.linkedin.com/in/username/">LinkedIn</a>
+            <a href="https://app.hackthebox.com/users/1775303" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
           </div>
         </div>
       </article>
-
-      <article class="member-card">
-        <div class="member-avatar">
-          <img src="images/member3.png" alt="" loading="lazy"
-               onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%233a4466%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%238b9bb4%22 text-anchor=%22middle%22 dy=%22.35em%22 font-size=%2244%22 font-family=%22monospace%22%3E%3F%3C/text%3E%3C/svg%3E'">
-        </div>
+      <article class="member-card rank-pro-hacker">
+        <div class="member-avatar"><img src="assets/avatars/2249403.png" alt="" loading="lazy"></div>
         <div class="member-body">
-          <h3 class="member-name">xor_wife</h3>
-          <span class="member-role">crypto</span>
-          <p class="member-bio">If it's not a one-time pad, it's a someday-broken pad.</p>
+          <h3 class="member-name">RootX111</h3>
+          <span class="member-role">Pro Hacker</span>
+          <div class="member-metrics" aria-label="Hack The Box stats">
+            <div><strong>485</strong><span>HTB pts</span></div>
+            <div><strong>69</strong><span>root flags</span></div>
+            <div><strong>34</strong><span>puzzles</span></div>
+          </div>
           <div class="member-links">
-            <a href="https://github.com/username">GitHub</a>
+            <a href="https://app.hackthebox.com/users/2249403" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
           </div>
         </div>
       </article>
-
-      <article class="member-card">
-        <div class="member-avatar">
-          <img src="images/member4.png" alt="" loading="lazy"
-               onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%233a4466%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%238b9bb4%22 text-anchor=%22middle%22 dy=%22.35em%22 font-size=%2244%22 font-family=%22monospace%22%3E%3F%3C/text%3E%3C/svg%3E'">
-        </div>
+      <article class="member-card rank-pro-hacker">
+        <div class="member-avatar"><img src="assets/avatars/2430387-discord.png" alt="" loading="lazy"></div>
         <div class="member-body">
-          <h3 class="member-name">ghidra_gremlin</h3>
-          <span class="member-role">rev</span>
-          <p class="member-bio">Renames sub_401000 for a living. Dreams in x86.</p>
+          <h3 class="member-name">veshapi</h3>
+          <span class="member-role">Pro Hacker</span>
+          <div class="member-metrics" aria-label="Hack The Box stats">
+            <div><strong>477</strong><span>HTB pts</span></div>
+            <div><strong>118</strong><span>root flags</span></div>
+            <div><strong>8</strong><span>puzzles</span></div>
+          </div>
           <div class="member-links">
-            <a href="https://app.hackthebox.com/users/000000">HTB</a>
-            <a href="https://example.com">Blog</a>
+            <a href="https://app.hackthebox.com/users/2430387" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
           </div>
         </div>
       </article>
-
-      <article class="member-card">
-        <div class="member-avatar">
-          <img src="images/member5.png" alt="" loading="lazy"
-               onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%233a4466%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%238b9bb4%22 text-anchor=%22middle%22 dy=%22.35em%22 font-size=%2244%22 font-family=%22monospace%22%3E%3F%3C/text%3E%3C/svg%3E'">
-        </div>
+      <article class="member-card rank-pro-hacker">
+        <div class="member-avatar"><img src="assets/avatars/1480282.png" alt="" loading="lazy"></div>
         <div class="member-body">
-          <h3 class="member-name">packet_witch</h3>
-          <span class="member-role">forensics</span>
-          <p class="member-bio">Opens the pcap before the coffee. Will find your exfil in layer 7.</p>
+          <h3 class="member-name">spacemoth</h3>
+          <span class="member-role">Pro Hacker</span>
+          <div class="member-metrics" aria-label="Hack The Box stats">
+            <div><strong>429</strong><span>HTB pts</span></div>
+            <div><strong>171</strong><span>root flags</span></div>
+            <div><strong>17</strong><span>puzzles</span></div>
+          </div>
           <div class="member-links">
-            <a href="https://www.linkedin.com/in/username/">LinkedIn</a>
-            <a href="https://github.com/username">GitHub</a>
+            <a href="https://app.hackthebox.com/users/1480282" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
           </div>
         </div>
       </article>
-
-      <article class="member-card">
-        <div class="member-avatar">
-          <img src="images/member6.png" alt="" loading="lazy"
-               onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%233a4466%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%238b9bb4%22 text-anchor=%22middle%22 dy=%22.35em%22 font-size=%2244%22 font-family=%22monospace%22%3E%3F%3C/text%3E%3C/svg%3E'">
-        </div>
+      <article class="member-card rank-pro-hacker">
+        <div class="member-avatar"><img src="assets/avatars/3484245.png" alt="" loading="lazy"></div>
         <div class="member-body">
-          <h3 class="member-name">dork_lord</h3>
-          <span class="member-role">osint</span>
-          <p class="member-bio">Found your 2014 forum posts. Founder &amp; keeper of the team wiki.</p>
+          <h3 class="member-name">wn7rs</h3>
+          <span class="member-role">Pro Hacker</span>
+          <div class="member-metrics" aria-label="Hack The Box stats">
+            <div><strong>272</strong><span>HTB pts</span></div>
+            <div><strong>18</strong><span>root flags</span></div>
+            <div><strong>39</strong><span>puzzles</span></div>
+          </div>
           <div class="member-links">
-            <a href="https://example.com">Writeups</a>
+            <a href="https://app.hackthebox.com/users/3484245" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
           </div>
         </div>
       </article>
-
-      <!-- ═══ MEMBER CARD — COPY ME ═══
-      <article class="member-card">
-        <div class="member-avatar">
-          <img src="images/FILENAME.png" alt="" loading="lazy"
-               onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%233a4466%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%238b9bb4%22 text-anchor=%22middle%22 dy=%22.35em%22 font-size=%2244%22 font-family=%22monospace%22%3E%3F%3C/text%3E%3C/svg%3E'">
-        </div>
+      <article class="member-card rank-hacker">
+        <div class="member-avatar"><img src="assets/avatars/2177068.png" alt="" loading="lazy"></div>
         <div class="member-body">
-          <h3 class="member-name">HANDLE</h3>
-          <span class="member-role">ROLE</span>
-          <p class="member-bio">BIO — one or two lines.</p>
+          <h3 class="member-name">Kamigold</h3>
+          <span class="member-role">Hacker</span>
+          <div class="member-metrics" aria-label="Hack The Box stats">
+            <div><strong>172</strong><span>HTB pts</span></div>
+            <div><strong>90</strong><span>root flags</span></div>
+            <div><strong>30</strong><span>puzzles</span></div>
+          </div>
           <div class="member-links">
-            <a href="URL">Label</a>
+            <a href="https://app.hackthebox.com/users/2177068" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
           </div>
         </div>
       </article>
-      -->
-
+      <article class="member-card rank-hacker">
+        <div class="member-avatar"><img src="assets/avatars/2297778.png" alt="" loading="lazy"></div>
+        <div class="member-body">
+          <h3 class="member-name">vhdx</h3>
+          <span class="member-role">Hacker</span>
+          <div class="member-metrics" aria-label="Hack The Box stats">
+            <div><strong>139</strong><span>HTB pts</span></div>
+            <div><strong>18</strong><span>root flags</span></div>
+            <div><strong>1</strong><span>puzzles</span></div>
+          </div>
+          <div class="member-links">
+            <a href="https://app.hackthebox.com/users/2297778" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
+          </div>
+        </div>
+      </article>
+      <article class="member-card rank-hacker">
+        <div class="member-avatar"><img src="assets/avatars/1534034.png" alt="" loading="lazy"></div>
+        <div class="member-body">
+          <h3 class="member-name">Sephora</h3>
+          <span class="member-role">Hacker</span>
+          <div class="member-metrics" aria-label="Hack The Box stats">
+            <div><strong>135</strong><span>HTB pts</span></div>
+            <div><strong>14</strong><span>root flags</span></div>
+            <div><strong>41</strong><span>puzzles</span></div>
+          </div>
+          <div class="member-links">
+            <a href="https://app.hackthebox.com/users/1534034" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
+          </div>
+        </div>
+      </article>
+      <article class="member-card rank-hacker">
+        <div class="member-avatar"><img src="assets/avatars/1776932.png" alt="" loading="lazy"></div>
+        <div class="member-body">
+          <h3 class="member-name">pjng</h3>
+          <span class="member-role">Hacker</span>
+          <div class="member-metrics" aria-label="Hack The Box stats">
+            <div><strong>85</strong><span>HTB pts</span></div>
+            <div><strong>22</strong><span>root flags</span></div>
+            <div><strong>43</strong><span>puzzles</span></div>
+          </div>
+          <div class="member-links">
+            <a href="https://app.hackthebox.com/users/1776932" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
+          </div>
+        </div>
+      </article>
+      <article class="member-card rank-hacker">
+        <div class="member-avatar"><span class="avatar-fallback" aria-hidden="true">4</span></div>
+        <div class="member-body">
+          <h3 class="member-name">4o7</h3>
+          <span class="member-role">Hacker</span>
+          <div class="member-metrics" aria-label="Hack The Box stats">
+            <div><strong>64</strong><span>HTB pts</span></div>
+            <div><strong>7</strong><span>root flags</span></div>
+            <div><strong>0</strong><span>puzzles</span></div>
+          </div>
+          <div class="member-links">
+            <a href="https://app.hackthebox.com/users/3481575" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
+          </div>
+        </div>
+      </article>
+      <article class="member-card rank-hacker">
+        <div class="member-avatar"><img src="assets/avatars/2435797.png" alt="" loading="lazy"></div>
+        <div class="member-body">
+          <h3 class="member-name">CyberPix</h3>
+          <span class="member-role">Hacker</span>
+          <div class="member-metrics" aria-label="Hack The Box stats">
+            <div><strong>58</strong><span>HTB pts</span></div>
+            <div><strong>8</strong><span>root flags</span></div>
+            <div><strong>5</strong><span>puzzles</span></div>
+          </div>
+          <div class="member-links">
+            <a href="https://app.hackthebox.com/users/2435797" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
+          </div>
+        </div>
+      </article>
+      <article class="member-card rank-hacker">
+        <div class="member-avatar"><img src="assets/avatars/3434637.png" alt="" loading="lazy"></div>
+        <div class="member-body">
+          <h3 class="member-name">AstatineV2</h3>
+          <span class="member-role">Hacker</span>
+          <div class="member-metrics" aria-label="Hack The Box stats">
+            <div><strong>41</strong><span>HTB pts</span></div>
+            <div><strong>23</strong><span>root flags</span></div>
+            <div><strong>8</strong><span>puzzles</span></div>
+          </div>
+          <div class="member-links">
+            <a href="https://app.hackthebox.com/users/3434637" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
+          </div>
+        </div>
+      </article>
+      <article class="member-card rank-hacker">
+        <div class="member-avatar"><img src="assets/avatars/2181896.png" alt="" loading="lazy"></div>
+        <div class="member-body">
+          <h3 class="member-name">Crimson99910</h3>
+          <span class="member-role">Hacker</span>
+          <div class="member-metrics" aria-label="Hack The Box stats">
+            <div><strong>35</strong><span>HTB pts</span></div>
+            <div><strong>19</strong><span>root flags</span></div>
+            <div><strong>0</strong><span>puzzles</span></div>
+          </div>
+          <div class="member-links">
+            <a href="https://app.hackthebox.com/users/2181896" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
+          </div>
+        </div>
+      </article>
+      <article class="member-card rank-script-kiddie">
+        <div class="member-avatar"><img src="assets/avatars/2366744.png" alt="" loading="lazy"></div>
+        <div class="member-body">
+          <h3 class="member-name">luknojo</h3>
+          <span class="member-role">Script Kiddie</span>
+          <div class="member-metrics" aria-label="Hack The Box stats">
+            <div><strong>25</strong><span>HTB pts</span></div>
+            <div><strong>6</strong><span>root flags</span></div>
+            <div><strong>0</strong><span>puzzles</span></div>
+          </div>
+          <div class="member-links">
+            <a href="https://app.hackthebox.com/users/2366744" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
+          </div>
+        </div>
+      </article>
+      <article class="member-card rank-script-kiddie">
+        <div class="member-avatar"><img src="assets/avatars/2507199.png" alt="" loading="lazy"></div>
+        <div class="member-body">
+          <h3 class="member-name">de1mos</h3>
+          <span class="member-role">Script Kiddie</span>
+          <div class="member-metrics" aria-label="Hack The Box stats">
+            <div><strong>14</strong><span>HTB pts</span></div>
+            <div><strong>5</strong><span>root flags</span></div>
+            <div><strong>0</strong><span>puzzles</span></div>
+          </div>
+          <div class="member-links">
+            <a href="https://app.hackthebox.com/users/2507199" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
+          </div>
+        </div>
+      </article>
+      <article class="member-card rank-script-kiddie">
+        <div class="member-avatar"><span class="avatar-fallback" aria-hidden="true">V</span></div>
+        <div class="member-body">
+          <h3 class="member-name">vivere</h3>
+          <span class="member-role">Script Kiddie</span>
+          <div class="member-metrics" aria-label="Hack The Box stats">
+            <div><strong>10</strong><span>HTB pts</span></div>
+            <div><strong>21</strong><span>root flags</span></div>
+            <div><strong>12</strong><span>puzzles</span></div>
+          </div>
+          <div class="member-links">
+            <a href="https://app.hackthebox.com/users/1774972" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
+          </div>
+        </div>
+      </article>
+      <article class="member-card rank-noob">
+        <div class="member-avatar"><img src="assets/avatars/3583668-discord.png" alt="" loading="lazy"></div>
+        <div class="member-body">
+          <h3 class="member-name">chalmaker33</h3>
+          <span class="member-role">Noob</span>
+          <div class="member-metrics" aria-label="Hack The Box stats">
+            <div><strong>1</strong><span>HTB pts</span></div>
+            <div><strong>1</strong><span>root flags</span></div>
+            <div><strong>4</strong><span>puzzles</span></div>
+          </div>
+          <div class="member-links">
+            <a href="https://app.hackthebox.com/users/3583668" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
+          </div>
+        </div>
+      </article>
+      <article class="member-card rank-noob">
+        <div class="member-avatar"><img src="assets/avatars/3538272.png" alt="" loading="lazy"></div>
+        <div class="member-body">
+          <h3 class="member-name">detoured</h3>
+          <span class="member-role">Noob</span>
+          <div class="member-metrics" aria-label="Hack The Box stats">
+            <div><strong>1</strong><span>HTB pts</span></div>
+            <div><strong>3</strong><span>root flags</span></div>
+            <div><strong>3</strong><span>puzzles</span></div>
+          </div>
+          <div class="member-links">
+            <a href="https://app.hackthebox.com/users/3538272" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
+          </div>
+        </div>
+      </article>
+      <article class="member-card rank-noob">
+        <div class="member-avatar"><span class="avatar-fallback" aria-hidden="true">S</span></div>
+        <div class="member-body">
+          <h3 class="member-name">SammiFox14</h3>
+          <span class="member-role">Noob</span>
+          <div class="member-metrics" aria-label="Hack The Box stats">
+            <div><strong>0</strong><span>HTB pts</span></div>
+            <div><strong>0</strong><span>root flags</span></div>
+            <div><strong>3</strong><span>puzzles</span></div>
+          </div>
+          <div class="member-links">
+            <a href="https://app.hackthebox.com/users/3507387" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
+          </div>
+        </div>
+      </article>
+      <!-- END GENERATED MEMBERS -->
     </div>
-  </section>
+    <!-- BEGIN GENERATED NOTE -->
+    <p class="data-note">Team event counters cover 2026-06-20–2026-09-13 UTC. Profile stats are a bot snapshot; individual syncs range from 2026-07-01 to 2026-09-13.</p>
+    <!-- END GENERATED NOTE -->
+  </main>
 
   <!-- ═══ FOOTER ═══ -->
   <footer>
     <div><span class="echo">$</span> echo "hack the planet"</div>
-    <div class="out">© 2026 GanG GanG</div>
+    <div class="out">© 2026 GANG GANG · made of late nights and root shells</div>
   </footer>
 
-  <script>
-    // keeps the "N members" counter in sync with the grid
-    document.getElementById("member-count").textContent =
-      document.querySelectorAll(".member-card").length;
-  </script>
+
 </body>
 </html>
