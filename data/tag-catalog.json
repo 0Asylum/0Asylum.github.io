@@ -1,0 +1,20 @@
+{
+  "WEB": "Web applications, APIs, authentication, and browser security",
+  "PWN": "Exploit development, memory corruption, and remote code execution",
+  "BINARY": "Binary analysis, executable formats, and low-level program behavior",
+  "REV": "Reverse engineering and decompilation",
+  "PRIVESC": "Linux and Windows privilege escalation",
+  "ACTIVE DIRECTORY": "Windows domains, Kerberos, and enterprise identity attacks",
+  "CRYPTO": "Cryptography and cryptanalysis",
+  "FORENSICS": "File, memory, disk, and packet forensics",
+  "DFIR": "Incident response and threat hunting",
+  "OSINT": "Open-source intelligence and identity research",
+  "STEGO": "Steganography and hidden-data challenges",
+  "NETWORK": "Network protocols, services, and traffic analysis",
+  "CLOUD": "Cloud platforms, containers, and cloud identity",
+  "MOBILE": "Android and iOS application security",
+  "HARDWARE": "Hardware, firmware, radio, and IoT security",
+  "PHYS": "Physical penetration testing, covert access, and surreptitious entry",
+  "MALWARE": "Malware analysis and behavioral research",
+  "AUTOMATION": "Security tooling, scripting, and workflow automation"
+}
