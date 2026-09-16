@@ -1,1 +1,26 @@
-{}
+{
+  "htb_members": {
+    "66289": {
+      "bio": "Trying hard",
+      "tags": [
+        "PWN",
+        "WEB",
+        "PHYS"
+      ],
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/0Asylum"
+        }
+      ]
+    }
+  },
+  "discord_members": {
+    "226775623488503808": {
+      "display_name": "mraranha",
+      "role": "Web Developer",
+      "badge": "★ WEBDEV",
+      "order": 3
+    }
+  }
+}
