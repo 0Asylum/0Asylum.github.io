@@ -199,6 +199,16 @@
       margin-top: 0.2rem;
     }
 
+    .stats-note {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.5rem 1rem;
+      color: var(--text-mute);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      text-align: center;
+    }
+
     /* ══════════════════════════════════════════════
        ROSTER
        ══════════════════════════════════════════════ */
@@ -266,7 +276,6 @@
     .member-card.rank-hacker { --accent: var(--e32-green); }
     .member-card.rank-pro-hacker { --accent: var(--e32-amber); }
     .member-card.rank-elite-hacker { --accent: var(--e32-mauve); }
-    .member-card.discord-admin { --accent: var(--e32-cyan); }
 
     .member-avatar {
       position: relative;
@@ -427,23 +436,6 @@
     .member-tag.tag-automation { border-color: var(--e32-forest); color: var(--e32-green); }
     .member-tag.tag-stego { border-color: var(--e32-tan); color: var(--e32-tan); }
 
-    .claim-note {
-      margin: 0;
-      padding: 0.55rem 0.65rem;
-      border: 1px dashed var(--accent);
-      color: var(--text-dim);
-      font-size: 0.76rem;
-      line-height: 1.45;
-    }
-
-    .claim-note strong,
-    .claim-note code { color: var(--accent); }
-
-    .claim-note code {
-      font-family: var(--font-mono);
-      white-space: nowrap;
-    }
-
     .member-links {
       display: flex;
       flex-wrap: wrap;
@@ -594,29 +586,30 @@
 
   <!-- BEGIN GENERATED STATS -->
   <section class="stats" aria-label="Team activity from Hack The Box">
-    <div class="stat"><div class="stat-value">23</div><div class="stat-label">Operatives</div></div>
-    <div class="stat"><div class="stat-value">186</div><div class="stat-label">Root events</div></div>
-    <div class="stat"><div class="stat-value">42</div><div class="stat-label">Puzzle clears</div></div>
+    <div class="stat"><div class="stat-value">24</div><div class="stat-label">Operatives</div></div>
+    <div class="stat"><div class="stat-value">178</div><div class="stat-label">Root events</div></div>
+    <div class="stat"><div class="stat-value">43</div><div class="stat-label">Puzzle clears</div></div>
     <div class="stat"><div class="stat-value">3</div><div class="stat-label">Fortress flags</div></div>
   </section>
+  <p class="stats-note">Activity counters use a rolling 90-day team feed. Member cards show lifetime profile totals.</p>
   <!-- END GENERATED STATS -->
 
   <main class="roster" id="roster">
     <div class="roster-head">
       <h2>// roster</h2>
       <span class="rule" aria-hidden="true"></span>
-      <span class="count">23 members</span>
+      <span class="count">24 members</span>
     </div>
     <p class="roster-note">$ cat /team/crew.txt <span aria-hidden="true">█</span></p>
     <div class="member-grid">
       <!-- BEGIN GENERATED MEMBERS -->
-      <article class="member-card founder rank-elite-hacker" data-htb-id="1775303" data-discord-id="" data-base-name="opr3vail" data-base-role="Elite Hacker" data-base-avatar="assets/avatars/1775303.png" data-base-badge="">
+      <article class="member-card rank-elite-hacker" data-htb-id="1775303" data-discord-id="" data-base-name="opr3vail" data-base-role="Elite Hacker" data-base-avatar="assets/avatars/1775303.png" data-base-badge="">
         <div class="member-avatar"><img src="assets/avatars/1775303.png" alt="" loading="lazy"></div>
         <div class="member-body">
-          <h3 class="member-name"><span class="member-display-name">opr3vail</span> <span class="founder-mark">★ Founder</span></h3>
+          <h3 class="member-name"><span class="member-display-name">opr3vail</span> <span class="special-mark member-custom-badge">★ Founder</span></h3>
           <span class="member-role">Elite Hacker</span>
           <div class="member-metrics" aria-label="Hack The Box stats">
-            <div><strong>271</strong><span>HTB pts</span></div>
+            <div><strong>77</strong><span>HTB pts</span></div>
             <div><strong>100</strong><span>root flags</span></div>
             <div><strong>38</strong><span>puzzles</span></div>
           </div>
@@ -625,7 +618,7 @@
           </div>
         </div>
       </article>
-      <article class="member-card captain rank-pro-hacker" data-htb-id="66289" data-discord-id="218957491671793664" data-base-name="asylum" data-base-role="Pro Hacker" data-base-avatar="assets/avatars/66289.png" data-base-badge="">
+      <article class="member-card captain rank-pro-hacker" data-htb-id="66289" data-discord-id="218957491671793664" data-base-name="asylum" data-base-role="Pro Hacker" data-base-avatar="assets/avatars/66289.png" data-base-badge="★ captain">
         <div class="member-avatar"><img src="assets/avatars/66289.png" alt="" loading="lazy"></div>
         <div class="member-body">
           <h3 class="member-name"><span class="member-display-name">asylum</span> <span class="captain-mark">★ captain</span></h3>
@@ -633,8 +626,8 @@
           <ul class="member-tags" aria-label="Specialties"><li class="member-tag tag-pwn" tabindex="0" data-description="Exploit development, memory corruption, and remote code execution" aria-label="PWN: Exploit development, memory corruption, and remote code execution">PWN</li><li class="member-tag tag-web" tabindex="0" data-description="Web applications, APIs, authentication, and browser security" aria-label="WEB: Web applications, APIs, authentication, and browser security">WEB</li><li class="member-tag tag-phys" tabindex="0" data-description="Physical penetration testing, covert access, and surreptitious entry" aria-label="PHYS: Physical penetration testing, covert access, and surreptitious entry">PHYS</li></ul>
           <p class="member-bio">Trying hard</p>
           <div class="member-metrics" aria-label="Hack The Box stats">
-            <div><strong>312</strong><span>HTB pts</span></div>
-            <div><strong>67</strong><span>root flags</span></div>
+            <div><strong>141</strong><span>HTB pts</span></div>
+            <div><strong>69</strong><span>root flags</span></div>
             <div><strong>21</strong><span>puzzles</span></div>
           </div>
           <div class="member-links">
@@ -644,45 +637,19 @@
           </div>
         </div>
       </article>
-      <article class="member-card discord-admin" data-htb-id="" data-discord-id="226775623488503808" data-base-name="Aranha." data-base-role="Team Admin" data-base-avatar="assets/avatars/discord-226775623488503808.png" data-base-badge="★ ADMIN">
-        <div class="member-avatar"><img src="assets/avatars/discord-226775623488503808.png" alt="" loading="lazy"></div>
+      <article class="member-card rank-hacker" data-htb-id="2312478" data-discord-id="226775623488503808" data-base-name="MrAranha" data-base-role="Hacker" data-base-avatar="assets/avatars/2312478.png" data-base-badge="">
+        <div class="member-avatar"><img src="assets/avatars/2312478.png" alt="" loading="lazy"></div>
         <div class="member-body">
           <h3 class="member-name"><span class="member-display-name">mraranha</span> <span class="special-mark member-custom-badge">★ WEBDEV</span></h3>
-          <span class="member-role">Web Developer</span>
-          <p class="claim-note"><strong>HTB profile unclaimed.</strong> Use <code>!claim &lt;profileID|name&gt;</code> in Discord to add metrics.</p>
+          <span class="member-role">Hacker</span>
+          <div class="member-metrics" aria-label="Hack The Box stats">
+            <div><strong>19</strong><span>HTB pts</span></div>
+            <div><strong>13</strong><span>root flags</span></div>
+            <div><strong>0</strong><span>puzzles</span></div>
+          </div>
           <div class="member-links">
+            <a class="member-base-link" href="https://app.hackthebox.com/users/2312478" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
             <a class="member-base-link" href="https://discord.com/users/226775623488503808" target="_blank" rel="noopener noreferrer">&gt; Discord</a>
-          </div>
-        </div>
-      </article>
-      <article class="member-card rank-pro-hacker" data-htb-id="2249403" data-discord-id="" data-base-name="RootX111" data-base-role="Pro Hacker" data-base-avatar="assets/avatars/2249403.png" data-base-badge="">
-        <div class="member-avatar"><img src="assets/avatars/2249403.png" alt="" loading="lazy"></div>
-        <div class="member-body">
-          <h3 class="member-name"><span class="member-display-name">RootX111</span></h3>
-          <span class="member-role">Pro Hacker</span>
-          <div class="member-metrics" aria-label="Hack The Box stats">
-            <div><strong>485</strong><span>HTB pts</span></div>
-            <div><strong>69</strong><span>root flags</span></div>
-            <div><strong>34</strong><span>puzzles</span></div>
-          </div>
-          <div class="member-links">
-            <a class="member-base-link" href="https://app.hackthebox.com/users/2249403" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
-          </div>
-        </div>
-      </article>
-      <article class="member-card rank-pro-hacker" data-htb-id="2430387" data-discord-id="1385437719416803508" data-base-name="veshapi" data-base-role="Pro Hacker" data-base-avatar="assets/avatars/2430387-discord.png" data-base-badge="">
-        <div class="member-avatar"><img src="assets/avatars/2430387-discord.png" alt="" loading="lazy"></div>
-        <div class="member-body">
-          <h3 class="member-name"><span class="member-display-name">veshapi</span></h3>
-          <span class="member-role">Pro Hacker</span>
-          <div class="member-metrics" aria-label="Hack The Box stats">
-            <div><strong>477</strong><span>HTB pts</span></div>
-            <div><strong>118</strong><span>root flags</span></div>
-            <div><strong>8</strong><span>puzzles</span></div>
-          </div>
-          <div class="member-links">
-            <a class="member-base-link" href="https://app.hackthebox.com/users/2430387" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
-            <a class="member-base-link" href="https://discord.com/users/1385437719416803508" target="_blank" rel="noopener noreferrer">&gt; Discord</a>
           </div>
         </div>
       </article>
@@ -692,12 +659,28 @@
           <h3 class="member-name"><span class="member-display-name">spacemoth</span></h3>
           <span class="member-role">Pro Hacker</span>
           <div class="member-metrics" aria-label="Hack The Box stats">
-            <div><strong>429</strong><span>HTB pts</span></div>
-            <div><strong>171</strong><span>root flags</span></div>
+            <div><strong>609</strong><span>HTB pts</span></div>
+            <div><strong>200</strong><span>root flags</span></div>
             <div><strong>17</strong><span>puzzles</span></div>
           </div>
           <div class="member-links">
             <a class="member-base-link" href="https://app.hackthebox.com/users/1480282" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
+          </div>
+        </div>
+      </article>
+      <article class="member-card rank-pro-hacker" data-htb-id="2430387" data-discord-id="1385437719416803508" data-base-name="veshapi" data-base-role="Pro Hacker" data-base-avatar="" data-base-badge="">
+        <div class="member-avatar"><span class="avatar-fallback" aria-hidden="true">V</span></div>
+        <div class="member-body">
+          <h3 class="member-name"><span class="member-display-name">veshapi</span></h3>
+          <span class="member-role">Pro Hacker</span>
+          <div class="member-metrics" aria-label="Hack The Box stats">
+            <div><strong>411</strong><span>HTB pts</span></div>
+            <div><strong>136</strong><span>root flags</span></div>
+            <div><strong>8</strong><span>puzzles</span></div>
+          </div>
+          <div class="member-links">
+            <a class="member-base-link" href="https://app.hackthebox.com/users/2430387" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
+            <a class="member-base-link" href="https://discord.com/users/1385437719416803508" target="_blank" rel="noopener noreferrer">&gt; Discord</a>
           </div>
         </div>
       </article>
@@ -707,12 +690,43 @@
           <h3 class="member-name"><span class="member-display-name">wn7rs</span></h3>
           <span class="member-role">Pro Hacker</span>
           <div class="member-metrics" aria-label="Hack The Box stats">
-            <div><strong>272</strong><span>HTB pts</span></div>
-            <div><strong>18</strong><span>root flags</span></div>
+            <div><strong>210</strong><span>HTB pts</span></div>
+            <div><strong>23</strong><span>root flags</span></div>
             <div><strong>39</strong><span>puzzles</span></div>
           </div>
           <div class="member-links">
             <a class="member-base-link" href="https://app.hackthebox.com/users/3484245" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
+          </div>
+        </div>
+      </article>
+      <article class="member-card rank-pro-hacker" data-htb-id="2435797" data-discord-id="" data-base-name="CyberPix" data-base-role="Pro Hacker" data-base-avatar="assets/avatars/2435797.png" data-base-badge="">
+        <div class="member-avatar"><img src="assets/avatars/2435797.png" alt="" loading="lazy"></div>
+        <div class="member-body">
+          <h3 class="member-name"><span class="member-display-name">CyberPix</span></h3>
+          <span class="member-role">Pro Hacker</span>
+          <div class="member-metrics" aria-label="Hack The Box stats">
+            <div><strong>270</strong><span>HTB pts</span></div>
+            <div><strong>22</strong><span>root flags</span></div>
+            <div><strong>5</strong><span>puzzles</span></div>
+          </div>
+          <div class="member-links">
+            <a class="member-base-link" href="https://app.hackthebox.com/users/2435797" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
+          </div>
+        </div>
+      </article>
+      <article class="member-card rank-pro-hacker" data-htb-id="2297778" data-discord-id="490873645640581130" data-base-name="vhdx" data-base-role="Pro Hacker" data-base-avatar="assets/avatars/2297778.png" data-base-badge="">
+        <div class="member-avatar"><img src="assets/avatars/2297778.png" alt="" loading="lazy"></div>
+        <div class="member-body">
+          <h3 class="member-name"><span class="member-display-name">vhdx</span></h3>
+          <span class="member-role">Pro Hacker</span>
+          <div class="member-metrics" aria-label="Hack The Box stats">
+            <div><strong>226</strong><span>HTB pts</span></div>
+            <div><strong>23</strong><span>root flags</span></div>
+            <div><strong>1</strong><span>puzzles</span></div>
+          </div>
+          <div class="member-links">
+            <a class="member-base-link" href="https://app.hackthebox.com/users/2297778" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
+            <a class="member-base-link" href="https://discord.com/users/490873645640581130" target="_blank" rel="noopener noreferrer">&gt; Discord</a>
           </div>
         </div>
       </article>
@@ -722,8 +736,8 @@
           <h3 class="member-name"><span class="member-display-name">Kamigold</span></h3>
           <span class="member-role">Hacker</span>
           <div class="member-metrics" aria-label="Hack The Box stats">
-            <div><strong>172</strong><span>HTB pts</span></div>
-            <div><strong>90</strong><span>root flags</span></div>
+            <div><strong>126</strong><span>HTB pts</span></div>
+            <div><strong>103</strong><span>root flags</span></div>
             <div><strong>30</strong><span>puzzles</span></div>
           </div>
           <div class="member-links">
@@ -731,30 +745,14 @@
           </div>
         </div>
       </article>
-      <article class="member-card rank-hacker" data-htb-id="2297778" data-discord-id="490873645640581130" data-base-name="vhdx" data-base-role="Hacker" data-base-avatar="assets/avatars/2297778.png" data-base-badge="">
-        <div class="member-avatar"><img src="assets/avatars/2297778.png" alt="" loading="lazy"></div>
-        <div class="member-body">
-          <h3 class="member-name"><span class="member-display-name">vhdx</span></h3>
-          <span class="member-role">Hacker</span>
-          <div class="member-metrics" aria-label="Hack The Box stats">
-            <div><strong>139</strong><span>HTB pts</span></div>
-            <div><strong>18</strong><span>root flags</span></div>
-            <div><strong>1</strong><span>puzzles</span></div>
-          </div>
-          <div class="member-links">
-            <a class="member-base-link" href="https://app.hackthebox.com/users/2297778" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
-            <a class="member-base-link" href="https://discord.com/users/490873645640581130" target="_blank" rel="noopener noreferrer">&gt; Discord</a>
-          </div>
-        </div>
-      </article>
-      <article class="member-card rank-hacker" data-htb-id="1534034" data-discord-id="" data-base-name="Sephora" data-base-role="Hacker" data-base-avatar="assets/avatars/1534034.png" data-base-badge="">
+      <article class="member-card rank-hacker" data-htb-id="1534034" data-discord-id="" data-base-name="V1ctor1ous" data-base-role="Hacker" data-base-avatar="assets/avatars/1534034.png" data-base-badge="">
         <div class="member-avatar"><img src="assets/avatars/1534034.png" alt="" loading="lazy"></div>
         <div class="member-body">
-          <h3 class="member-name"><span class="member-display-name">Sephora</span></h3>
+          <h3 class="member-name"><span class="member-display-name">V1ctor1ous</span></h3>
           <span class="member-role">Hacker</span>
           <div class="member-metrics" aria-label="Hack The Box stats">
-            <div><strong>135</strong><span>HTB pts</span></div>
-            <div><strong>14</strong><span>root flags</span></div>
+            <div><strong>94</strong><span>HTB pts</span></div>
+            <div><strong>16</strong><span>root flags</span></div>
             <div><strong>41</strong><span>puzzles</span></div>
           </div>
           <div class="member-links">
@@ -768,7 +766,7 @@
           <h3 class="member-name"><span class="member-display-name">pjng</span></h3>
           <span class="member-role">Hacker</span>
           <div class="member-metrics" aria-label="Hack The Box stats">
-            <div><strong>85</strong><span>HTB pts</span></div>
+            <div><strong>68</strong><span>HTB pts</span></div>
             <div><strong>22</strong><span>root flags</span></div>
             <div><strong>43</strong><span>puzzles</span></div>
           </div>
@@ -783,27 +781,12 @@
           <h3 class="member-name"><span class="member-display-name">4o7</span></h3>
           <span class="member-role">Hacker</span>
           <div class="member-metrics" aria-label="Hack The Box stats">
-            <div><strong>64</strong><span>HTB pts</span></div>
-            <div><strong>7</strong><span>root flags</span></div>
+            <div><strong>62</strong><span>HTB pts</span></div>
+            <div><strong>8</strong><span>root flags</span></div>
             <div><strong>0</strong><span>puzzles</span></div>
           </div>
           <div class="member-links">
             <a class="member-base-link" href="https://app.hackthebox.com/users/3481575" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
-          </div>
-        </div>
-      </article>
-      <article class="member-card rank-hacker" data-htb-id="2435797" data-discord-id="" data-base-name="CyberPix" data-base-role="Hacker" data-base-avatar="assets/avatars/2435797.png" data-base-badge="">
-        <div class="member-avatar"><img src="assets/avatars/2435797.png" alt="" loading="lazy"></div>
-        <div class="member-body">
-          <h3 class="member-name"><span class="member-display-name">CyberPix</span></h3>
-          <span class="member-role">Hacker</span>
-          <div class="member-metrics" aria-label="Hack The Box stats">
-            <div><strong>58</strong><span>HTB pts</span></div>
-            <div><strong>8</strong><span>root flags</span></div>
-            <div><strong>5</strong><span>puzzles</span></div>
-          </div>
-          <div class="member-links">
-            <a class="member-base-link" href="https://app.hackthebox.com/users/2435797" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
           </div>
         </div>
       </article>
@@ -813,8 +796,8 @@
           <h3 class="member-name"><span class="member-display-name">AstatineV2</span></h3>
           <span class="member-role">Hacker</span>
           <div class="member-metrics" aria-label="Hack The Box stats">
-            <div><strong>41</strong><span>HTB pts</span></div>
-            <div><strong>23</strong><span>root flags</span></div>
+            <div><strong>56</strong><span>HTB pts</span></div>
+            <div><strong>25</strong><span>root flags</span></div>
             <div><strong>8</strong><span>puzzles</span></div>
           </div>
           <div class="member-links">
@@ -822,15 +805,15 @@
           </div>
         </div>
       </article>
-      <article class="member-card rank-hacker" data-htb-id="2181896" data-discord-id="966882268998152192" data-base-name="Crimson99910" data-base-role="Hacker" data-base-avatar="assets/avatars/2181896.png" data-base-badge="">
+      <article class="member-card rank-hacker" data-htb-id="2181896" data-discord-id="966882268998152192" data-base-name="Crimson9" data-base-role="Hacker" data-base-avatar="assets/avatars/2181896.png" data-base-badge="">
         <div class="member-avatar"><img src="assets/avatars/2181896.png" alt="" loading="lazy"></div>
         <div class="member-body">
-          <h3 class="member-name"><span class="member-display-name">Crimson99910</span></h3>
+          <h3 class="member-name"><span class="member-display-name">Crimson9</span></h3>
           <span class="member-role">Hacker</span>
           <div class="member-metrics" aria-label="Hack The Box stats">
-            <div><strong>35</strong><span>HTB pts</span></div>
-            <div><strong>19</strong><span>root flags</span></div>
-            <div><strong>0</strong><span>puzzles</span></div>
+            <div><strong>47</strong><span>HTB pts</span></div>
+            <div><strong>20</strong><span>root flags</span></div>
+            <div><strong>2</strong><span>puzzles</span></div>
           </div>
           <div class="member-links">
             <a class="member-base-link" href="https://app.hackthebox.com/users/2181896" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
@@ -838,14 +821,45 @@
           </div>
         </div>
       </article>
-      <article class="member-card rank-script-kiddie" data-htb-id="2366744" data-discord-id="1272709669269409824" data-base-name="luknojo" data-base-role="Script Kiddie" data-base-avatar="assets/avatars/2366744.png" data-base-badge="">
+      <article class="member-card rank-hacker" data-htb-id="3475719" data-discord-id="1462877880852942972" data-base-name="Oresit0" data-base-role="Hacker" data-base-avatar="assets/avatars/3475719.png" data-base-badge="">
+        <div class="member-avatar"><img src="assets/avatars/3475719.png" alt="" loading="lazy"></div>
+        <div class="member-body">
+          <h3 class="member-name"><span class="member-display-name">Oresit0</span></h3>
+          <span class="member-role">Hacker</span>
+          <div class="member-metrics" aria-label="Hack The Box stats">
+            <div><strong>18</strong><span>HTB pts</span></div>
+            <div><strong>11</strong><span>root flags</span></div>
+            <div><strong>3</strong><span>puzzles</span></div>
+          </div>
+          <div class="member-links">
+            <a class="member-base-link" href="https://app.hackthebox.com/users/3475719" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
+            <a class="member-base-link" href="https://discord.com/users/1462877880852942972" target="_blank" rel="noopener noreferrer">&gt; Discord</a>
+          </div>
+        </div>
+      </article>
+      <article class="member-card rank-hacker" data-htb-id="168485" data-discord-id="" data-base-name="svfear" data-base-role="Hacker" data-base-avatar="assets/avatars/168485.png" data-base-badge="">
+        <div class="member-avatar"><img src="assets/avatars/168485.png" alt="" loading="lazy"></div>
+        <div class="member-body">
+          <h3 class="member-name"><span class="member-display-name">svfear</span></h3>
+          <span class="member-role">Hacker</span>
+          <div class="member-metrics" aria-label="Hack The Box stats">
+            <div><strong>1</strong><span>HTB pts</span></div>
+            <div><strong>18</strong><span>root flags</span></div>
+            <div><strong>0</strong><span>puzzles</span></div>
+          </div>
+          <div class="member-links">
+            <a class="member-base-link" href="https://app.hackthebox.com/users/168485" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
+          </div>
+        </div>
+      </article>
+      <article class="member-card rank-hacker" data-htb-id="2366744" data-discord-id="1272709669269409824" data-base-name="luknojo" data-base-role="Hacker" data-base-avatar="assets/avatars/2366744.png" data-base-badge="">
         <div class="member-avatar"><img src="assets/avatars/2366744.png" alt="" loading="lazy"></div>
         <div class="member-body">
           <h3 class="member-name"><span class="member-display-name">luknojo</span></h3>
-          <span class="member-role">Script Kiddie</span>
+          <span class="member-role">Hacker</span>
           <div class="member-metrics" aria-label="Hack The Box stats">
-            <div><strong>25</strong><span>HTB pts</span></div>
-            <div><strong>6</strong><span>root flags</span></div>
+            <div><strong>39</strong><span>HTB pts</span></div>
+            <div><strong>8</strong><span>root flags</span></div>
             <div><strong>0</strong><span>puzzles</span></div>
           </div>
           <div class="member-links">
@@ -854,18 +868,34 @@
           </div>
         </div>
       </article>
-      <article class="member-card rank-script-kiddie" data-htb-id="2507199" data-discord-id="" data-base-name="de1mos" data-base-role="Script Kiddie" data-base-avatar="assets/avatars/2507199.png" data-base-badge="">
+      <article class="member-card rank-script-kiddie" data-htb-id="2507199" data-discord-id="522816376147279882" data-base-name="de1mos" data-base-role="Script Kiddie" data-base-avatar="assets/avatars/2507199.png" data-base-badge="">
         <div class="member-avatar"><img src="assets/avatars/2507199.png" alt="" loading="lazy"></div>
         <div class="member-body">
           <h3 class="member-name"><span class="member-display-name">de1mos</span></h3>
           <span class="member-role">Script Kiddie</span>
           <div class="member-metrics" aria-label="Hack The Box stats">
-            <div><strong>14</strong><span>HTB pts</span></div>
-            <div><strong>5</strong><span>root flags</span></div>
+            <div><strong>24</strong><span>HTB pts</span></div>
+            <div><strong>7</strong><span>root flags</span></div>
             <div><strong>0</strong><span>puzzles</span></div>
           </div>
           <div class="member-links">
             <a class="member-base-link" href="https://app.hackthebox.com/users/2507199" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
+            <a class="member-base-link" href="https://discord.com/users/522816376147279882" target="_blank" rel="noopener noreferrer">&gt; Discord</a>
+          </div>
+        </div>
+      </article>
+      <article class="member-card rank-script-kiddie" data-htb-id="3498522" data-discord-id="" data-base-name="marcosgc2810" data-base-role="Script Kiddie" data-base-avatar="" data-base-badge="">
+        <div class="member-avatar"><span class="avatar-fallback" aria-hidden="true">M</span></div>
+        <div class="member-body">
+          <h3 class="member-name"><span class="member-display-name">marcosgc2810</span></h3>
+          <span class="member-role">Script Kiddie</span>
+          <div class="member-metrics" aria-label="Hack The Box stats">
+            <div><strong>10</strong><span>HTB pts</span></div>
+            <div><strong>5</strong><span>root flags</span></div>
+            <div><strong>0</strong><span>puzzles</span></div>
+          </div>
+          <div class="member-links">
+            <a class="member-base-link" href="https://app.hackthebox.com/users/3498522" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
           </div>
         </div>
       </article>
@@ -884,8 +914,40 @@
           </div>
         </div>
       </article>
-      <article class="member-card rank-noob" data-htb-id="3583668" data-discord-id="1456812399213678797" data-base-name="chalmaker33" data-base-role="Noob" data-base-avatar="assets/avatars/3583668-discord.png" data-base-badge="">
-        <div class="member-avatar"><img src="assets/avatars/3583668-discord.png" alt="" loading="lazy"></div>
+      <article class="member-card rank-hacker" data-htb-id="3538272" data-discord-id="1492570854393909401" data-base-name="detoured" data-base-role="Hacker" data-base-avatar="assets/avatars/3538272.png" data-base-badge="">
+        <div class="member-avatar"><img src="assets/avatars/3538272.png" alt="" loading="lazy"></div>
+        <div class="member-body">
+          <h3 class="member-name"><span class="member-display-name">detoured</span></h3>
+          <span class="member-role">Hacker</span>
+          <div class="member-metrics" aria-label="Hack The Box stats">
+            <div><strong>36</strong><span>HTB pts</span></div>
+            <div><strong>15</strong><span>root flags</span></div>
+            <div><strong>3</strong><span>puzzles</span></div>
+          </div>
+          <div class="member-links">
+            <a class="member-base-link" href="https://app.hackthebox.com/users/3538272" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
+            <a class="member-base-link" href="https://discord.com/users/1492570854393909401" target="_blank" rel="noopener noreferrer">&gt; Discord</a>
+            <a class="member-extra-link" href="https://github.com/detoured" target="_blank" rel="noopener noreferrer">&gt; GitHub</a>
+          </div>
+        </div>
+      </article>
+      <article class="member-card rank-noob" data-htb-id="3507387" data-discord-id="" data-base-name="SammiFox14" data-base-role="Noob" data-base-avatar="" data-base-badge="">
+        <div class="member-avatar"><span class="avatar-fallback" aria-hidden="true">S</span></div>
+        <div class="member-body">
+          <h3 class="member-name"><span class="member-display-name">SammiFox14</span></h3>
+          <span class="member-role">Noob</span>
+          <div class="member-metrics" aria-label="Hack The Box stats">
+            <div><strong>2</strong><span>HTB pts</span></div>
+            <div><strong>1</strong><span>root flags</span></div>
+            <div><strong>3</strong><span>puzzles</span></div>
+          </div>
+          <div class="member-links">
+            <a class="member-base-link" href="https://app.hackthebox.com/users/3507387" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
+          </div>
+        </div>
+      </article>
+      <article class="member-card rank-noob" data-htb-id="3583668" data-discord-id="1456812399213678797" data-base-name="chalmaker33" data-base-role="Noob" data-base-avatar="" data-base-badge="">
+        <div class="member-avatar"><span class="avatar-fallback" aria-hidden="true">C</span></div>
         <div class="member-body">
           <h3 class="member-name"><span class="member-display-name">chalmaker33</span></h3>
           <span class="member-role">Noob</span>
@@ -900,63 +962,25 @@
           </div>
         </div>
       </article>
-      <article class="member-card rank-noob" data-htb-id="3538272" data-discord-id="1492570854393909401" data-base-name="detoured" data-base-role="Noob" data-base-avatar="assets/avatars/3538272.png" data-base-badge="">
-        <div class="member-avatar"><img src="assets/avatars/3538272.png" alt="" loading="lazy"></div>
+      <article class="member-card rank-noob" data-htb-id="2132222" data-discord-id="" data-base-name="Zin0x" data-base-role="Noob" data-base-avatar="assets/avatars/2132222.png" data-base-badge="">
+        <div class="member-avatar"><img src="assets/avatars/2132222.png" alt="" loading="lazy"></div>
         <div class="member-body">
-          <h3 class="member-name"><span class="member-display-name">detoured</span></h3>
-          <span class="member-role">Noob</span>
-          <div class="member-metrics" aria-label="Hack The Box stats">
-            <div><strong>1</strong><span>HTB pts</span></div>
-            <div><strong>3</strong><span>root flags</span></div>
-            <div><strong>3</strong><span>puzzles</span></div>
-          </div>
-          <div class="member-links">
-            <a class="member-base-link" href="https://app.hackthebox.com/users/3538272" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
-            <a class="member-base-link" href="https://discord.com/users/1492570854393909401" target="_blank" rel="noopener noreferrer">&gt; Discord</a>
-          </div>
-        </div>
-      </article>
-      <article class="member-card rank-noob" data-htb-id="3507387" data-discord-id="" data-base-name="SammiFox14" data-base-role="Noob" data-base-avatar="" data-base-badge="">
-        <div class="member-avatar"><span class="avatar-fallback" aria-hidden="true">S</span></div>
-        <div class="member-body">
-          <h3 class="member-name"><span class="member-display-name">SammiFox14</span></h3>
+          <h3 class="member-name"><span class="member-display-name">Zin0x</span></h3>
           <span class="member-role">Noob</span>
           <div class="member-metrics" aria-label="Hack The Box stats">
             <div><strong>0</strong><span>HTB pts</span></div>
-            <div><strong>0</strong><span>root flags</span></div>
-            <div><strong>3</strong><span>puzzles</span></div>
+            <div><strong>1</strong><span>root flags</span></div>
+            <div><strong>0</strong><span>puzzles</span></div>
           </div>
           <div class="member-links">
-            <a class="member-base-link" href="https://app.hackthebox.com/users/3507387" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
-          </div>
-        </div>
-      </article>
-      <article class="member-card discord-admin" data-htb-id="" data-discord-id="208812756558675969" data-base-name="spacemoth" data-base-role="Team Admin" data-base-avatar="assets/avatars/discord-208812756558675969.png" data-base-badge="★ ADMIN">
-        <div class="member-avatar"><img src="assets/avatars/discord-208812756558675969.png" alt="" loading="lazy"></div>
-        <div class="member-body">
-          <h3 class="member-name"><span class="member-display-name">spacemoth</span> <span class="special-mark member-custom-badge">★ ADMIN</span></h3>
-          <span class="member-role">Team Admin</span>
-          <p class="claim-note"><strong>HTB profile unclaimed.</strong> Use <code>!claim &lt;profileID|name&gt;</code> in Discord to add metrics.</p>
-          <div class="member-links">
-            <a class="member-base-link" href="https://discord.com/users/208812756558675969" target="_blank" rel="noopener noreferrer">&gt; Discord</a>
-          </div>
-        </div>
-      </article>
-      <article class="member-card discord-admin" data-htb-id="" data-discord-id="522816376147279882" data-base-name="Lokky" data-base-role="Team Admin" data-base-avatar="assets/avatars/discord-522816376147279882.png" data-base-badge="★ ADMIN">
-        <div class="member-avatar"><img src="assets/avatars/discord-522816376147279882.png" alt="" loading="lazy"></div>
-        <div class="member-body">
-          <h3 class="member-name"><span class="member-display-name">Lokky</span> <span class="special-mark member-custom-badge">★ ADMIN</span></h3>
-          <span class="member-role">Team Admin</span>
-          <p class="claim-note"><strong>HTB profile unclaimed.</strong> Use <code>!claim &lt;profileID|name&gt;</code> in Discord to add metrics.</p>
-          <div class="member-links">
-            <a class="member-base-link" href="https://discord.com/users/522816376147279882" target="_blank" rel="noopener noreferrer">&gt; Discord</a>
+            <a class="member-base-link" href="https://app.hackthebox.com/users/2132222" target="_blank" rel="noopener noreferrer">&gt; HTB profile</a>
           </div>
         </div>
       </article>
       <!-- END GENERATED MEMBERS -->
     </div>
     <!-- BEGIN GENERATED NOTE -->
-    <p class="data-note">Team event counters cover 2026-06-20–2026-09-14 UTC. Profile stats are a bot snapshot; individual syncs range from 2026-07-01 to 2026-09-13.</p>
+    <p class="data-note">Website last synced 2026-09-18 00:57 UTC. Profile stats are a bot snapshot.</p>
     <!-- END GENERATED NOTE -->
   </main>
 
@@ -1123,9 +1147,7 @@
             ? extra.display_name.trim()
             : card.dataset.baseName;
           card.querySelector('.member-display-name').textContent = name;
-          card.querySelector('.member-role').textContent = typeof extra.role === 'string' && extra.role.trim()
-            ? extra.role.trim()
-            : card.dataset.baseRole;
+          card.querySelector('.member-role').textContent = card.dataset.baseRole;
           setAvatar(card, name, extra);
           setBadge(card, extra);
           setTags(card, extra, catalog);
@@ -1149,5 +1171,6 @@
       });
     })();
   </script>
+
 </body>
 </html>

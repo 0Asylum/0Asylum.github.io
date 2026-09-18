@@ -1,5 +1,8 @@
 {
   "htb_members": {
+    "1775303": {
+      "badge": "★ Founder"
+    },
     "66289": {
       "bio": "Trying hard",
       "tags": [
@@ -13,12 +16,19 @@
           "url": "https://github.com/0Asylum"
         }
       ]
+    },
+    "3538272": {
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/detoured"
+        }
+      ]
     }
   },
   "discord_members": {
     "226775623488503808": {
       "display_name": "mraranha",
-      "role": "Web Developer",
       "badge": "★ WEBDEV",
       "order": 3
     }
