@@ -3,6 +3,11 @@
     "1775303": {
       "badge": "★ Founder"
     },
+    "2312478": {
+      "display_name": "mraranha",
+      "badge": "★ WEBDEV",
+      "order": 3
+    },
     "66289": {
       "bio": "Trying hard",
       "tags": [
@@ -24,13 +29,6 @@
           "url": "https://github.com/detoured"
         }
       ]
-    }
-  },
-  "discord_members": {
-    "226775623488503808": {
-      "display_name": "mraranha",
-      "badge": "★ WEBDEV",
-      "order": 3
     }
   }
 }
